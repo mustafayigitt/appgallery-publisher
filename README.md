@@ -2,30 +2,16 @@
 Upload/Publish your bundle (apk or aab) to AppGallery automatically with ***appgallery-publisher***
 
 ## Usage
-
-### Query Params
-    - appId (required, string)
-    - submit (optional, boolean)
-
-### Body
+    node standalone.js appId=app_id submit=true grantType=client_credentials clientId=client_id clientSecret=client_secret artifactPath=path
+### Params
     {
+        "appId": "app_id"
+        "submit": "true" (optional),
         "grant_type": "client_credentials",
         "client_id": "client_id",
         "client_secret": "client_secret",
         "artifact_path": "path" (etc: /Users/mustafa.yigit/Desktop/app-release.aab)
     }
-
-### Request
-    POST -> http://localhost:3000/publish?appId=105596257&submit=true
-
-### Response
-#### * upload only
-    "result": {
-        "packageVersion": "98591645147584"
-    }
-    
-#### * upload & publish
-    "result": "success"
 
 ## Steps
   1. [getToken(grantType, clientId, clientSecret)](https://github.com/mustafayigitt/appgallery-publisher/blob/6662fc061230c9283babddbb8bc61ca5403533dc/Publisher.js#L5)
