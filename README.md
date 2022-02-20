@@ -2,6 +2,7 @@
 Upload/Publish your bundle (apk or aab) to AppGallery automatically with ***appgallery-publisher***
 
 ## Usage
+***If you are looking use executable script file, yo should go to [script-only](https://github.com/mustafayigitt/appgallery-publisher/tree/script-only) branch.***
 
 ### Query Params
     - appId (required, string)
