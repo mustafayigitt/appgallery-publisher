@@ -32,8 +32,9 @@ async function getUploadUrl(appId, suffix, clientId, token) {
             }
         )
         const {uploadUrl, authCode} = await uploadUrlResult.data
-        console.log(uploadUrl, authCode);
-        return {uploadUrl: uploadUrl, authCode: authCode}
+        const uploadUrlData = {uploadUrl: uploadUrl, authCode: authCode}
+        console.log(uploadUrlData);
+        return uploadUrlData
     } catch (err) {
         console.log("GetUploadUrl: ", err)
         throw err
@@ -43,7 +44,7 @@ async function getUploadUrl(appId, suffix, clientId, token) {
 async function getArtifactFromPath(path) {
     try {
         const data = await fs.readFileSync(path)
-        console.log("Data read", data.byteLength)
+        console.log("Data read length", data.byteLength)
         return data
     } catch (err) {
         console.log("GetArtifactFromPath: ", err)
@@ -71,6 +72,7 @@ async function uploadArtifact(artifact, suffix, uploadUrl, authCode) {
             }
         )
         const fileInfo = await uploadResult.data.result.UploadFileRsp.fileInfoList[0]
+        console.log("FileInfo: ", fileInfo);
         return fileInfo
     } catch (err) {
         console.log("UploadArtifact: ", err)
@@ -116,7 +118,6 @@ async function publish(token, clientId, appId) {
                     "client_id": clientId
                 }
             })
-        console.log(await publishResult.data);
         return await publishResult.data.ret.msg
     } catch (err) {
         console.log("Publish: ", err)
