@@ -17,7 +17,6 @@ app.post("/publish", async (req, res) => {
     const appId = req.query.appId
     const submitNow = req.query.submit
 
-    const grantType = req.body.grant_type
     const clientId = req.body.client_id
     const clientSecret = req.body.client_secret
     const artifactPath = req.body.artifact_path
@@ -26,7 +25,7 @@ app.post("/publish", async (req, res) => {
 
     try {
 
-        const token = await Publisher.getToken(grantType, clientId, clientSecret)
+        const token = await Publisher.getToken(clientId, clientSecret)
 
         const {uploadUrl, authCode} = await Publisher.getUploadUrl(appId, suffix, clientId, token)
 
