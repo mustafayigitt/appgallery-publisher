@@ -3,18 +3,16 @@ import Publisher from "./Publisher.js";
 const args = parseArgs(process.argv.slice(2))
 
 const appId = args["appId"]
-const submitNow = args["submit"]
-
-const grantType = args["grantType"]
 const clientId = args["clientId"]
 const clientSecret = args["clientSecret"]
 const artifactPath = args["artifactPath"]
+const submitNow = args["submit"]
 
 const suffix = artifactPath.substring(artifactPath.length - 3, artifactPath.length)
 
 try {
 
-    const token = await Publisher.getToken(grantType, clientId, clientSecret)
+    const token = await Publisher.getToken(clientId, clientSecret)
 
     const {uploadUrl, authCode} = await Publisher.getUploadUrl(appId, suffix, clientId, token)
 

@@ -2,12 +2,12 @@ import axios from "axios";
 import fs from "fs";
 import FormData from "form-data";
 
-async function getToken(grantType, clientId, clientSecret) {
+async function getToken(clientId, clientSecret) {
     try {
         const tokenResult = await axios.post(
             "https://connect-api.cloud.huawei.com/api/oauth2/v1/token",
             {
-                grant_type: grantType,
+                grant_type: "client_credentials",
                 client_id: clientId,
                 client_secret: clientSecret
             })
